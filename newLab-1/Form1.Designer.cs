@@ -29,14 +29,21 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Сотрудники");
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.listView1 = new System.Windows.Forms.ListView();
             this.Name_persone = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.WorkeType_persone = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Age_persone = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.DG_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DG_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DG_age = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -61,22 +68,16 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.TM_01 = new System.Windows.Forms.Timer(this.components);
-            this.DG_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DG_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DG_age = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -131,6 +132,28 @@
             this.Age_persone.Text = "Возраст";
             this.Age_persone.Width = 139;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem5,
+            this.toolStripMenuItem6});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(131, 48);
+            // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(130, 22);
+            this.toolStripMenuItem5.Text = "Удалить";
+            this.toolStripMenuItem5.Click += new System.EventHandler(this.toolStripMenuItem5_Click);
+            // 
+            // toolStripMenuItem6
+            // 
+            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(130, 22);
+            this.toolStripMenuItem6.Text = "сохранить";
+            this.toolStripMenuItem6.Click += new System.EventHandler(this.toolStripMenuItem6_Click);
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.dataGridView1);
@@ -154,6 +177,22 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(525, 393);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_Click);
+            // 
+            // DG_name
+            // 
+            this.DG_name.HeaderText = "имя";
+            this.DG_name.Name = "DG_name";
+            // 
+            // DG_type
+            // 
+            this.DG_type.HeaderText = "Должность";
+            this.DG_type.Name = "DG_type";
+            // 
+            // DG_age
+            // 
+            this.DG_age.HeaderText = "Возраст";
+            this.DG_age.Name = "DG_age";
             // 
             // tabPage3
             // 
@@ -171,6 +210,10 @@
             this.treeView1.ContextMenuStrip = this.contextMenuStrip1;
             this.treeView1.Location = new System.Drawing.Point(28, 29);
             this.treeView1.Name = "treeView1";
+            treeNode2.Name = "Node0";
+            treeNode2.Text = "Сотрудники";
+            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode2});
             this.treeView1.Size = new System.Drawing.Size(534, 398);
             this.treeView1.TabIndex = 0;
             // 
@@ -197,7 +240,7 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(132, 22);
             this.toolStripMenuItem2.Text = "Открыть";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
@@ -206,6 +249,7 @@
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             this.toolStripMenuItem3.Size = new System.Drawing.Size(132, 22);
             this.toolStripMenuItem3.Text = "Сохранить";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
             // toolStripMenuItem4
             // 
@@ -367,41 +411,11 @@
             this.panel1.Size = new System.Drawing.Size(388, 339);
             this.panel1.TabIndex = 23;
             // 
-            // contextMenuStrip1
+            // TM_01
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem5,
-            this.toolStripMenuItem6});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(131, 48);
-            // 
-            // toolStripMenuItem5
-            // 
-            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(130, 22);
-            this.toolStripMenuItem5.Text = "Удалить";
-            this.toolStripMenuItem5.Click += new System.EventHandler(this.toolStripMenuItem5_Click);
-            // 
-            // toolStripMenuItem6
-            // 
-            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(130, 22);
-            this.toolStripMenuItem6.Text = "сохранить";
-            // 
-            // DG_name
-            // 
-            this.DG_name.HeaderText = "имя";
-            this.DG_name.Name = "DG_name";
-            // 
-            // DG_type
-            // 
-            this.DG_type.HeaderText = "Должность";
-            this.DG_type.Name = "DG_type";
-            // 
-            // DG_age
-            // 
-            this.DG_age.HeaderText = "Возраст";
-            this.DG_age.Name = "DG_age";
+            this.TM_01.Enabled = true;
+            this.TM_01.Interval = 100000;
+            this.TM_01.Tick += new System.EventHandler(this.TM_01_Tick);
             // 
             // Form1
             // 
@@ -417,6 +431,7 @@
             this.Text = "Учет сотруднеков";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabPage3.ResumeLayout(false);
@@ -426,7 +441,6 @@
             this.statusStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
