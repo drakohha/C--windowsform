@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<ArrayOfPersone xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Persone>
+    <Name_persone>Vital</Name_persone>
+    <WorkeType_persone>prodovec</WorkeType_persone>
+    <Age_persone>11</Age_persone>
+  </Persone>
+  <Persone>
+    <Name_persone>tally</Name_persone>
+    <WorkeType_persone>kassir</WorkeType_persone>
+    <Age_persone>22</Age_persone>
+  </Persone>
+  <Persone>
+    <Name_persone>mitty</Name_persone>
+    <WorkeType_persone>meneger</WorkeType_persone>
+    <Age_persone>33</Age_persone>
+  </Persone>
+</ArrayOfPersone>

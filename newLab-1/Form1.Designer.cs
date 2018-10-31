@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Сотрудники");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Сотрудники");
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.listView1 = new System.Windows.Forms.ListView();
@@ -210,10 +210,10 @@
             this.treeView1.ContextMenuStrip = this.contextMenuStrip1;
             this.treeView1.Location = new System.Drawing.Point(28, 29);
             this.treeView1.Name = "treeView1";
-            treeNode2.Name = "Node0";
-            treeNode2.Text = "Сотрудники";
+            treeNode1.Name = "Node0";
+            treeNode1.Text = "Сотрудники";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode1});
             this.treeView1.Size = new System.Drawing.Size(534, 398);
             this.treeView1.TabIndex = 0;
             // 
@@ -414,7 +414,7 @@
             // TM_01
             // 
             this.TM_01.Enabled = true;
-            this.TM_01.Interval = 100000;
+            this.TM_01.Interval = 50000;
             this.TM_01.Tick += new System.EventHandler(this.TM_01_Tick);
             // 
             // Form1

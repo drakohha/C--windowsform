@@ -14,7 +14,7 @@ namespace drakohha_01
 {
     public partial class Form1 : Form
     {
-        Persone tek_persone = new Persone();
+       
         DateTime date1 = new DateTime();
         int select_index;
         int index_of_row;
@@ -22,27 +22,27 @@ namespace drakohha_01
         
         void file_load()
         {
-            XmlSerializer formatter = new XmlSerializer(typeof(Persone));
+            XmlSerializer formatter = new XmlSerializer(typeof(List<Persone>));
             // десериализация
             using (FileStream fs = new FileStream("persons.xml", FileMode.OpenOrCreate))
             {
-                Persone newPerson = (Persone)formatter.Deserialize(fs);
+                List<Persone> newPerson = (List<Persone>)formatter.Deserialize(fs);
                
 
-                tek_persone = newPerson;
-                MessageBox.Show("файл открыт");
+                Per_list = newPerson;
+               
             }
         }
 
         void file_save()
         {
-            Persone per = new Persone();
-            per = tek_persone;
-            XmlSerializer formatter = new XmlSerializer(typeof(Persone));
+           
+
+            XmlSerializer formatter = new XmlSerializer(typeof(List<Persone>));
             using (FileStream fs = new FileStream("persons.xml", FileMode.OpenOrCreate))
             {
-                formatter.Serialize(fs, per);
-                MessageBox.Show("файл сохранен");
+                formatter.Serialize(fs, Per_list);
+               
 
 
             }
@@ -52,37 +52,8 @@ namespace drakohha_01
         // Сохранение записи в файл
         void save_progress()
         {
-            if (tabPage1.Focus() == true)
-            {
-                foreach (ListViewItem x in listView1.Items)
-                {
-                    tek_persone.Name_persone = x.SubItems[0].Text;
-                    tek_persone.WorkeType_persone = x.SubItems[1].Text;
-
-                    tek_persone.Age_persone = Convert.ToInt32(x.SubItems[2].Text);
-                    file_save();
-
-
-
-                }
-
-
-            }
-            else if (tabPage2.Focus() == true)
-            {
-                tek_persone.Name_persone = dataGridView1.Rows[0].Cells[0].Value.ToString();
-                tek_persone.WorkeType_persone = dataGridView1.Rows[0].Cells[1].Value.ToString();
-
-                tek_persone.Age_persone = Convert.ToInt32(dataGridView1.Rows[0].Cells[2].Value.ToString());
-                MessageBox.Show(tek_persone.Name_persone);
-
-                file_save();
-            }
-            else if (tabPage3.Focus() == true)
-            {
-
-            }
-
+            file_save();
+            
             date1 = DateTime.Now;
             toolStripStatusLabel3.Text = date1.ToString();
             toolStripProgressBar1.Value = 100;
@@ -93,31 +64,47 @@ namespace drakohha_01
         // Загрузка инфы из файла
         void load_progress()
         {
+           
             file_load();
-
+            Persone tek_persone = new Persone();
 
             if (tabPage1.Focus() == true)
             {
+                
 
+                foreach( var x in Per_list)
+                {
+                     ListViewItem li_01 = new ListViewItem();
+                     li_01.Text = x.Name_persone;
+                     li_01.SubItems.Add(x.WorkeType_persone);
+                     li_01.SubItems.Add(x.Age_persone.ToString());
+                     listView1.Items.Add(li_01);
+                }
 
-                ListViewItem li_01 = new ListViewItem();
-                li_01.Text = (tek_persone.Name_persone);
-                li_01.SubItems.Add(tek_persone.WorkeType_persone);
-                li_01.SubItems.Add(tek_persone.Age_persone.ToString());
-                listView1.Items.Add(li_01);
+                
+                
 
 
             }
             else if (tabPage2.Focus() == true)
             {
-                this.dataGridView1.Rows.Add(tek_persone.Name_persone, tek_persone.WorkeType_persone, tek_persone.Age_persone);
+                foreach (var x in Per_list)
+                {
+                   
+                    this.dataGridView1.Rows.Add(x.Name_persone, x.WorkeType_persone, x.Age_persone);
+                }
+                
             }
             else if (tabPage3.Focus() == true)
             {
-                TreeNode tr = new TreeNode(tek_persone.Name_persone);
-                 
-                
-                treeView1.Nodes[0].Nodes.Add(tr);
+                foreach (var x in Per_list)
+                {
+
+                    TreeNode tr = new TreeNode(x.Name_persone);
+
+
+                    treeView1.Nodes[0].Nodes.Add(tr);
+                }
             }
 
             toolStripProgressBar1.Value = 0;
@@ -129,20 +116,21 @@ namespace drakohha_01
             if (tabPage1.Focus() == true)
             {
                 listView1.SelectedItems[0].Remove();
+                Per_list.RemoveAt(select_index);
                 
             }
             else if (tabPage2.Focus() == true)
             {
                 
                 this.dataGridView1.Rows.Remove(dataGridView1.Rows[select_index]);
-
+                Per_list.RemoveAt(index_of_row);
 
                
             }
             else if (tabPage3.Focus() == true)
             {
                 treeView1.Nodes.Remove(this.treeView1.SelectedNode);
-               
+                
             }
 
 
@@ -155,15 +143,15 @@ namespace drakohha_01
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
-     
+            Persone tek_persone = new Persone();
+
 
             tek_persone.Name_persone = Name_TB_01.Text;
             tek_persone.WorkeType_persone = WorkeType_TB_01.Text;
             tek_persone.Age_persone = Convert.ToInt32(Age_TB_01.Text);
             Per_list.Add(tek_persone);
-            
 
+            
 
             if (tabPage1.Focus() == true)
             {
@@ -186,8 +174,10 @@ namespace drakohha_01
                 
 
                 treeView1.Nodes[0].Nodes.Add(tr);
-               // MessageBox.Show("сработал варинт 3");
+               
             }
+
+            
 
         }
 
